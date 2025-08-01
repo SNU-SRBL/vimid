@@ -277,7 +277,7 @@ cv::Mat dataLoader::loadNextRGBFrame(){
 
 /// \brief Load next Depth frame
 cv::Mat dataLoader::loadNextDepthFrame(){
-    cv::Mat depthFrame = cv::imread(depthFramePath_, cv::IMREAD_GRAYSCALE | CV_LOAD_IMAGE_ANYDEPTH);
+    cv::Mat depthFrame = cv::imread(depthFramePath_, cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
     depthFrame.convertTo(depthFrame, CV_16UC1, 1.0f);
     return depthFrame;
 }

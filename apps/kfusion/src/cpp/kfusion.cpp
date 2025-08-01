@@ -1038,10 +1038,10 @@ bool Kfusion::segment(float4 k, uint frame, std::string segFolder,
     // cv::Mat GT_mask = cv::imread(GT_mask_files_[frame]);
     // GT_mask = (GT_mask == 0);
 
-    cv::Mat GT_label = cv::imread(GT_mask_files_[frame], CV_16SC1);
+    cv::Mat GT_label = cv::imread(GT_mask_files_[frame], cv::IMREAD_ANYDEPTH);
 
     cv::Mat GT_mask = (GT_label == 0);
-    cv::cvtColor(GT_mask, GT_mask, CV_BGR2GRAY);
+    cv::cvtColor(GT_mask, GT_mask, cv::COLOR_BGR2GRAY);
     // GT_mask = (GT_mask == 7);
     // cv::Mat GT_label = cv::imread(GT_label_files_[frame]);
     if ((GT_mask.cols != static_cast<int>(computationSize.x)) ||
@@ -1055,7 +1055,7 @@ bool Kfusion::segment(float4 k, uint frame, std::string segFolder,
     GT_segmentation.pair_instance_seg_.insert(std::make_pair(1, one_instance));
 
     cv::Mat GT_mask1 = (GT_label == 2);
-    cv::cvtColor(GT_mask1, GT_mask1, CV_BGR2GRAY);
+    cv::cvtColor(GT_mask1, GT_mask1, cv::COLOR_BGR2GRAY);
 
     // GT_mask = (GT_mask == 7);
     // cv::Mat GT_label = cv::imread(GT_label_files_[frame]);

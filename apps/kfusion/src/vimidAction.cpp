@@ -63,19 +63,19 @@ void PoseViewer::publishFullStateAsCallback(
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_x[0], e_x[1]) * _frameScale),
-      cv::Scalar(0, 0, 255), 1, CV_AA);
+      cv::Scalar(0, 0, 255), 1, cv::LINE_AA);
   cv::line(
       _image,
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_y[0], e_y[1]) * _frameScale),
-      cv::Scalar(0, 255, 0), 1, CV_AA);
+      cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
   cv::line(
       _image,
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_z[0], e_z[1]) * _frameScale),
-      cv::Scalar(255, 0, 0), 1, CV_AA);
+      cv::Scalar(255, 0, 0), 1, cv::LINE_AA);
 
   // some text:
   std::stringstream postext;
@@ -135,19 +135,19 @@ void PoseViewer::display(const okvis::kinematics::Transformation &T_WS)
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_x[0], e_x[1]) * _frameScale),
-      cv::Scalar(0, 0, 255), 1, CV_AA);
+      cv::Scalar(0, 0, 255), 1, cv::LINE_AA);
   cv::line(
       _image,
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_y[0], e_y[1]) * _frameScale),
-      cv::Scalar(0, 255, 0), 1, CV_AA);
+      cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
   cv::line(
       _image,
       convertToImageCoordinates(_path.back()),
       convertToImageCoordinates(
           _path.back() + cv::Point2d(e_z[0], e_z[1]) * _frameScale),
-      cv::Scalar(255, 0, 0), 1, CV_AA);
+      cv::Scalar(255, 0, 0), 1, cv::LINE_AA);
 
   // some text:
   std::stringstream postext;
@@ -185,7 +185,7 @@ void PoseViewer::drawPath()
         p0,
         p1,
         rel_height * cv::Scalar(255, 0, 0) + (1.0 - rel_height) * cv::Scalar(0, 0, 255),
-        1, CV_AA);
+        1, cv::LINE_AA);
     i++;
   }
 }
@@ -1321,12 +1321,12 @@ bool vimidAction::runOkvisDataset()
           depth = cv::imread(
               path + "/cam" + std::to_string(parameters.nCameraSystem.virtualCameraIdx(i)) +
                   "/data/" + *cam_iterators.at(i),
-              cv::IMREAD_GRAYSCALE | CV_LOAD_IMAGE_ANYDEPTH);
+              cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
         }
         else if (dataType == OkvisDatasetType::viSim)
         {
           depth = cv::imread(
-              path + "/depth0/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | CV_LOAD_IMAGE_ANYDEPTH);
+              path + "/depth0/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
           depth.convertTo(depth, CV_16UC1, 1.0f);
           // depthTransformation(depth, 5.0);
         }

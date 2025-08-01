@@ -184,11 +184,11 @@ bool ZR300Reader::readDataset(std::string path, okvis::VioParameters parameters)
 //          if(dataType == OkvisDatasetType::Realsense){
             depth = cv::imread(
                 path + "/cam" + std::to_string(parameters.nCameraSystem.virtualCameraIdx(i)) +
-                    "/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | CV_LOAD_IMAGE_ANYDEPTH);
+                    "/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
 //          }
 //          else if(dataType == OkvisDatasetType::VISim){
 //            depth = cv::imread(
-//                path + "/depth0/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | CV_LOAD_IMAGE_ANYDEPTH);
+//                path + "/depth0/data/" + *cam_iterators.at(i), cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
 //            depth.convertTo(depth,CV_16UC1, 5.0f);
 //          }
 //          else{
@@ -630,7 +630,7 @@ void ZR300Reader::runRGBCallback(rs::frame& frame){
         cv::Mat greyMat;
 
         if(rgb.img.channels() > 1){
-            cv::cvtColor(rgb.img, greyMat, CV_BGR2GRAY);
+            cv::cvtColor(rgb.img, greyMat, cv::COLOR_BGR2GRAY);
         }else{
             greyMat = rgb.img.clone();
         }
